@@ -1,0 +1,7 @@
+enter your name:
+GREED|GREED
+start|старт
+scores|очки
+options|опции
+lang|язык
+exit|выход 
