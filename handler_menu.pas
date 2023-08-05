@@ -161,7 +161,7 @@ begin
     begin
         select := get_choice_menu(gamemenu);
         case select of
-            0: start_game := True
+            0: start_game := True;
             {1: show_scores;}
             {2 : show_options} 
             3: break;
