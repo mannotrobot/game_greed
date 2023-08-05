@@ -5,7 +5,8 @@ uses
     crt, menu, show_menu;
 
 function get_name(var gamemenu: cmenu) : string;
-function get_choice(var gamemenu: cmenu): integer;
+function get_choice_menu(var gamemenu: cmenu): integer;
+function handler_menu_start() : boolean;
 implementation
 
 procedure getkey(var code: integer);
@@ -111,7 +112,7 @@ begin
     gotoxy(1, 1);
 end;
 
-function get_choice(var gamemenu: cmenu): integer;
+function get_choice_menu(var gamemenu: cmenu): integer;
 var
     choice : integer;
     code   : integer;
@@ -140,7 +141,27 @@ begin;
         end;
     end;
 
-    get_choice := choice;
+    get_choice_menu := choice;
 end;
 
+function handler_menu_start(): boolean;
+var
+    gamemenu  : cmenu;
+    start_game: boolean;
+    username  : string;
+    select    : integer;
+begin
+    start_game := False;
+    gamemenu := get_menu;
+    username := get_name(gamemenu); 
+    while start_game = False do
+    begin
+        select := get_choice_menu(gamemenu);
+        case select of
+            3: break;
+        end;
+    end;
+    gotoxy(screenwidth div 2, screenheight);
+    handler_menu_start := start_game;
+end;
 end.
