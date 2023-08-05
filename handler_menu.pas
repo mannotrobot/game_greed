@@ -128,7 +128,9 @@ begin;
     begin
         if not keypressed then
         begin
+            textcolor(red + blink);
             show_cursor(cx, cy);
+            textcolor(lightgray);
             show_menu_game(gamemenu, x, y);
             gotoxy(1, 1);
         end;
@@ -144,6 +146,7 @@ begin;
     get_choice_menu := choice;
 end;
 
+
 function handler_menu_start(): boolean;
 var
     gamemenu  : cmenu;
@@ -158,10 +161,12 @@ begin
     begin
         select := get_choice_menu(gamemenu);
         case select of
+            0: start_game := True
+            {1: show_scores;}
+            {2 : show_options} 
             3: break;
         end;
     end;
-    gotoxy(screenwidth div 2, screenheight);
     handler_menu_start := start_game;
 end;
 end.
