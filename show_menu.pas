@@ -7,6 +7,7 @@ uses
 procedure show_menu_game(var game_menu: cmenu; x, y: integer);
 procedure show_start_menu(var game: cmenu; x, y: integer);
 procedure show_cursor(x, y : integer);
+procedure show_scores(var top: scores);
 implementation
 
 procedure show_cursor(x, y: integer);
@@ -56,5 +57,33 @@ begin
     gotoxy(x - 2, y + 1);
     write('*****');
     gotoxy(1, 1);
+end;
+
+procedure show_scores(var top: scores);
+var
+    x, y : integer;
+    line : string;
+    pos  : integer;
+begin
+    line := 'TOP 10 GAMERS';
+    x:= screenwidth div 2;
+    y:= screenheight div 2;
+    colortext(red);
+    gotoxy(x + 5, y - 7);
+    wrtite(line);
+    gotoxy(1, 1);
+    colortext(ligthgray);
+    for pos := 0 to 9 do
+    begin
+        gotoxy(x - 7 , y - 6 + pos);
+        write(top[pos].name, top[pos].score);
+    end;
+    while True do
+    begin
+        if keypressed then
+        begin
+            break
+        end;
+    end;
 end;
 end.
